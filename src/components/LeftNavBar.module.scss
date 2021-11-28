@@ -1,0 +1,60 @@
+nav {
+  max-width: 500px;
+  min-width: 160px;
+  height: 100%;
+  background-color: #f7f6f3;
+  flex-shrink: 0; // 뷰포트 가로 너비가 작을 때 찌그러짐 방지
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  .header {
+    padding: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    .user-profile {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      margin-right: 10px;
+      background-image: url("https://avatars.githubusercontent.com/u/75520260?v=4");
+      background-size: cover;
+    }
+  }
+  ul {
+    flex-grow: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .actions {
+    border-top: 1px solid #e2e1dd;
+    .action {
+      height: 45px;
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      color: #99958a;
+      cursor: pointer;
+      &:hover {
+        background-color: darken(#f7f6f3, 7%);
+      }
+      .material-icons {
+        margin-right: 4px;
+        color: #99958a;
+      }
+    }
+  }
+  .resize-handle {
+    width: 4px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: col-resize;
+    transition: 0.4s;
+    &:hover {
+      background-color: #e2e1dd;
+    }
+  }
+}
