@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import store, { history } from "./redux/store";
+import NotFound from "./pages/NotFound";
 
 ReactDOM.render(
   // <React.StrictMode>
@@ -13,6 +14,10 @@ ReactDOM.render(
       <Switch>
         <Route path="/">
           <App />
+        </Route>
+        {/* <Redirect from="/" to="/workspace" /> */}
+        <Route path="*">
+          <NotFound />
         </Route>
       </Switch>
     </ConnectedRouter>
