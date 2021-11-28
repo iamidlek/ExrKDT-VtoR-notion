@@ -13,6 +13,7 @@ function App() {
 
   useEffect(() => {
     dispatch(readWorkspaceList());
+    // route /workspace로 리다이렉트 되도록 하면 좋겠다
   }, []);
   return (
     <div className={styles["app__inner"]}>
@@ -21,7 +22,6 @@ function App() {
         <PathHeader />
         <div className={styles["page__container"]}>
           <Switch>
-            <Route path="/workspace" component={Workspace} />
             <Route path="/workspace/:id" component={Workspace} />
             <Route path="*" component={NotFound} />
           </Switch>
