@@ -1,20 +1,22 @@
+import styles from "./PathHeader.module.scss";
+
 export default function PathHeader() {
   return (
     <header>
-      <div className="titles">
+      <div className={styles["titles"]}>
         <template
         // v-for="({ id, title }, index) in $store.state.workspace.currentWorkspacePath" :key="id"
         >
           <div
             // v-if="index > 0"
-            className="division"
+            className={styles["division"]}
           >
             /
           </div>
-          <button className="title">제목 없음</button>
+          <button className={styles["title"]}>제목 없음</button>
         </template>
       </div>
-      <div className="actions">
+      <div className={styles["actions"]}>
         <button>공유</button>
         <button>업데이트</button>
         <button>즐겨찾기</button>
