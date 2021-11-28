@@ -1,60 +1,74 @@
-export default function WorkspaceListItem({ item }) {
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import styles from "./WorkspaceListItem.module.scss";
+import { withRouter } from "react-router-dom";
+
+function WorkspaceListItem({ item, depth = 1, history }) {
+  const [showChildren, setShowChildren] = useState(false);
+  const hasChildren = item.children && item.children.length;
+  const handleshowChildren = (e) => {
+    e.stopPropagation();
+    setShowChildren((curr) => !curr);
+  };
+  const pathId = useSelector((state) => state.router.location.pathname).replace(
+    "/workspace/",
+    ""
+  );
+
   return (
     <div>
       <li>
         <div
-          // :style="{ paddingLeft: `${14 * depth}px` }"
-          // :class="{ active: $route.params.id === workspace.id }"
-          className="title"
-          // @click="$router.push({
-          // name: 'Workspace',
-          // params: {
-          // id: workspace.id
-          // }})"
+          style={{ paddingLeft: `${14 * depth}px` }}
+          className={`${styles["title"]} ${
+            pathId === item.id && styles["active"]
+          }`}
+          onClick={() => {
+            history.push(`/workspace/${item.id}`);
+          }}
         >
-          {item.title}
           <span
-            // :class="{ active: showChildren }"
-            className="material-icons"
-            // @click.stop="showChildren = !showChildren"
+            className={`material-icons ${showChildren && styles["active"]} ${
+              styles["material-icons"]
+            }`}
+            onClick={handleshowChildren}
           >
             play_arrow
           </span>
-          <span className="text">
-            {/* {{ workspace.title || '제목 없음' }} */}
-          </span>
-          <div className="actions">
+          <span className={styles["text"]}>{item.title || "제목 없음"}</span>
+          <div className={styles["actions"]}>
             <span
-              className="material-icons"
+              className={`material-icons ${styles["material-icons"]}`}
               // @click.stop="createWorkspace"
             >
               add
             </span>
             <span
-              className="material-icons"
+              className={`material-icons ${styles["material-icons"]}`}
               // @click.stop="deleteWorkspace"
             >
               delete
             </span>
           </div>
         </div>
-        <div
-          // v-if="!hasChildren && showChildren"
-          // :style="{ paddingLeft: `${14 * depth + 22}px` }"
-          className="no-children"
-        >
-          하위 페이지가 없습니다.
-        </div>
-        <ul
-        // v-if="hasChildren && showChildren"
-        >
-          {/* <WorkspaceItem
-        v-for="ws in workspace.children"
-        :key="ws.id"
-        :workspace="ws"
-        :depth="depth + 1" /> */}
+        {!hasChildren && showChildren && (
+          <div
+            style={{ paddingLeft: `${14 * depth + 22}px` }}
+            className={styles["no-children"]}
+          >
+            하위 페이지가 없습니다.
+          </div>
+        )}
+        <ul>
+          {hasChildren &&
+            showChildren &&
+            item.children.map((ws) => (
+              <WorkspaceListItem key={ws.id} item={ws} depth={depth + 1} />
+            ))}
         </ul>
       </li>
     </div>
   );
 }
+
+export default withRouter(WorkspaceListItem);
