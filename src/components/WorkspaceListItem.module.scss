@@ -1,0 +1,57 @@
+li {
+  cursor: pointer;
+  user-select: none;
+  .title {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    height: 30px;
+    padding: 0 14px;
+    position: relative;
+    color: rgba(#333, 0.7);
+    &:hover {
+      background-color: darken(#f7f6f3, 7%);
+      padding-right: 4px;
+      .actions {
+        display: flex;
+      }
+    }
+    &.active {
+      .text {
+        font-weight: 700;
+        color: rgba(#333, 0.8);
+      }
+    }
+    .material-icons {
+      font-size: 18px;
+      color: #99958a;
+      margin-right: 4px;
+      &:hover {
+        background-color: darken(#f7f6f3, 14%);
+      }
+      &.active {
+        transform: rotate(90deg);
+      }
+    }
+    .text {
+      flex-grow: 1;
+      // ...으로 자르기
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .actions {
+      display: none;
+      align-items: center;
+    }
+  }
+  .no-children {
+    color: rgba(#333, 0.35);
+    height: 30px;
+    display: flex;
+    align-items: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
