@@ -1,34 +1,37 @@
-export default function WorkspaceListItem() {
+export default function WorkspaceListItem({ item }) {
   return (
     <div>
       <li>
         <div
           // :style="{ paddingLeft: `${14 * depth}px` }"
           // :class="{ active: $route.params.id === workspace.id }"
-          class="title"
+          className="title"
           // @click="$router.push({
           // name: 'Workspace',
           // params: {
           // id: workspace.id
           // }})"
         >
+          {item.title}
           <span
             // :class="{ active: showChildren }"
-            class="material-icons"
+            className="material-icons"
             // @click.stop="showChildren = !showChildren"
           >
             play_arrow
           </span>
-          <span class="text">{/* {{ workspace.title || '제목 없음' }} */}</span>
-          <div class="actions">
+          <span className="text">
+            {/* {{ workspace.title || '제목 없음' }} */}
+          </span>
+          <div className="actions">
             <span
-              class="material-icons"
+              className="material-icons"
               // @click.stop="createWorkspace"
             >
               add
             </span>
             <span
-              class="material-icons"
+              className="material-icons"
               // @click.stop="deleteWorkspace"
             >
               delete
@@ -38,7 +41,7 @@ export default function WorkspaceListItem() {
         <div
           // v-if="!hasChildren && showChildren"
           // :style="{ paddingLeft: `${14 * depth + 22}px` }"
-          class="no-children"
+          className="no-children"
         >
           하위 페이지가 없습니다.
         </div>
