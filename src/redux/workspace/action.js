@@ -16,7 +16,6 @@ export const readWorkspaceList = () => async (dispatch) => {
     const workspaces = await request({
       method: "GET",
     });
-    console.log("ww", workspaces);
     dispatch({ type: READ_WS_LIST, payload: workspaces });
   } catch (error) {
     dispatch({ type: REQ_FAIL, payload: error });
