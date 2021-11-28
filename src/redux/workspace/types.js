@@ -1,3 +1,7 @@
+export const REQ_START = "REQ_START";
+export const REQ_SUCCESS = "REQ_START";
+export const REQ_FAIL = "REQ_FAIL";
+
 export const CREATE_WS = "CREATE_WS";
 export const READ_WS_LIST = "READ_WS_LIST";
 export const READ_WS = "READ_WS";

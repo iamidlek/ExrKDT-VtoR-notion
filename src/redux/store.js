@@ -25,9 +25,9 @@ if (env === "development") {
 
 const createRootReducer = (history) =>
   combineReducers({
-    workspaceReducer,
-    workspaceListReducer,
-    pathReducer,
+    workspace: workspaceReducer,
+    workspaceTree: workspaceListReducer,
+    path: pathReducer,
     router: connectRouter(history),
     // routing: routerReducer,
   });
