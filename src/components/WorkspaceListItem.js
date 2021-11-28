@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import styles from "./WorkspaceListItem.module.scss";
-import { withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-function WorkspaceListItem({ item, depth = 1, history }) {
+function WorkspaceListItem({ item, depth = 1 }) {
   const [showChildren, setShowChildren] = useState(false);
   const hasChildren = item.children && item.children.length;
   const handleshowChildren = (e) => {
@@ -14,6 +14,8 @@ function WorkspaceListItem({ item, depth = 1, history }) {
     "/workspace/",
     ""
   );
+  // withRouter의 재귀 컴포넌트에 적용이 어려운 점을 훅으로 대체
+  let history = useHistory();
 
   return (
     <div>
@@ -71,4 +73,4 @@ function WorkspaceListItem({ item, depth = 1, history }) {
   );
 }
 
-export default withRouter(WorkspaceListItem);
+export default WorkspaceListItem;
