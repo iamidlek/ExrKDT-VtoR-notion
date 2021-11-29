@@ -2,13 +2,11 @@ import axios from "axios";
 import {
   REQ_START,
   REQ_START_WS,
-  REQ_SUCCESS,
+  MAKE_PATH,
   REQ_FAIL,
-  CREATE_WS,
   READ_WS_LIST,
   READ_WS,
   UPDATE_WS,
-  DELETE_WS,
   REQ_FAIL_WS,
 } from "./types";
 
@@ -59,10 +57,23 @@ export const createWorkspace = (parentId) => async (dispatch) => {
     dispatch({ type: REQ_FAIL, payload: error });
   }
 };
-export const updateWorkspace = () => {
-  return {
-    type: UPDATE_WS,
-  };
+export const updateWorkspace = (payload) => async (dispatch) => {
+  try {
+    const { id, title, content, poster } = payload;
+    const updatedWorkspace = await request({
+      method: "PUT",
+      workspaceId: id,
+      data: {
+        title,
+        content,
+        poster,
+      },
+    });
+    dispatch({ type: UPDATE_WS, payload: updatedWorkspace });
+    dispatch(readWorkspaceList());
+  } catch (error) {
+    dispatch({ type: REQ_FAIL_WS, payload: error });
+  }
 };
 export const deleteWorkspace = (payload) => async (dispatch, getState) => {
   await request({
@@ -75,6 +86,20 @@ export const deleteWorkspace = (payload) => async (dispatch, getState) => {
     history.push(`/workspace/${id}`);
     dispatch(readWorkspace(id));
   }
+};
+
+export const headerPath = (currId) => (dispatch, getState) => {
+  const workspaces = getState().workspaceTree.workspaceList;
+  function _find(workspace, parents) {
+    if (workspace.id === currId) {
+      dispatch({ type: MAKE_PATH, payload: [...parents, workspace] });
+      return;
+    }
+    if (workspace.children) {
+      workspace.children.forEach((ws) => _find(ws, [...parents, workspace]));
+    }
+  }
+  workspaces.forEach((workspace) => _find(workspace, []));
 };
 
 async function request(options) {
