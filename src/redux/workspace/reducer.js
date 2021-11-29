@@ -1,7 +1,9 @@
 import {
   REQ_START,
+  REQ_START_WS,
   REQ_SUCCESS,
   REQ_FAIL,
+  REQ_FAIL_WS,
   CREATE_WS,
   READ_WS_LIST,
   READ_WS,
@@ -9,10 +11,42 @@ import {
   DELETE_WS,
 } from "./types";
 
-export const workspaceReducer = (state = {}, action) => {
+const wsInitial = {
+  loading: false,
+  error: null,
+  workspace: {
+    id: "",
+    poster: "",
+    title: "",
+    content: "",
+  },
+};
+
+export const workspaceReducer = (state = wsInitial, action) => {
   switch (action.type) {
+    case REQ_START_WS:
+      return {
+        ...state,
+        loading: true,
+      };
     case READ_WS:
-      return state;
+      const { id, poster, title, content } = action.payload;
+      return {
+        ...state,
+        loading: false,
+        workspace: {
+          id,
+          poster,
+          title,
+          content,
+        },
+      };
+    case REQ_FAIL_WS:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }
