@@ -26,23 +26,6 @@ export const readWorkspaceList = () => async (dispatch) => {
   }
 };
 
-export const createWorkspace =
-  (parentId = undefined) =>
-  async (dispatch) => {
-    try {
-      const newWorkspace = await request({
-        method: "POST",
-        data: {
-          title: "",
-          parentId,
-        },
-      });
-      dispatch(readWorkspaceList());
-      history.push(`/workspace/${newWorkspace.id}`);
-    } catch (error) {
-      dispatch({ type: REQ_FAIL, payload: error });
-    }
-  };
 export const readWorkspace = (id) => async (dispatch) => {
   dispatch({ type: REQ_START_WS });
   try {
@@ -55,15 +38,43 @@ export const readWorkspace = (id) => async (dispatch) => {
     dispatch({ type: REQ_FAIL_WS, payload: error });
   }
 };
+
+export const createWorkspace = (parentId) => async (dispatch) => {
+  try {
+    const newWorkspace = await request({
+      method: "POST",
+      data: {
+        title: "",
+        parentId,
+      },
+    });
+    if (!parentId) {
+      dispatch({ type: "HARD_PUSH", newWorkspace });
+    } else {
+      dispatch(readWorkspaceList());
+    }
+    dispatch(readWorkspace(newWorkspace.id));
+    history.push(`/workspace/${newWorkspace.id}`);
+  } catch (error) {
+    dispatch({ type: REQ_FAIL, payload: error });
+  }
+};
 export const updateWorkspace = () => {
   return {
     type: UPDATE_WS,
   };
 };
-export const deleteWorkspace = () => {
-  return {
-    type: DELETE_WS,
-  };
+export const deleteWorkspace = (payload) => async (dispatch, getState) => {
+  await request({
+    method: "DELETE",
+    workspaceId: payload.id,
+  });
+  dispatch(readWorkspaceList());
+  if (payload.id === payload.currId) {
+    const { id } = getState().workspaceTree.workspaceList[0];
+    history.push(`/workspace/${id}`);
+    dispatch(readWorkspace(id));
+  }
 };
 
 async function request(options) {

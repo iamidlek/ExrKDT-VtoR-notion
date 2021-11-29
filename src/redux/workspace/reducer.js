@@ -66,6 +66,12 @@ export const workspaceListReducer = (state = initial, action) => {
         loading: false,
         workspaceList: action.payload,
       };
+    case "HARD_PUSH":
+      return {
+        ...state,
+        loading: false,
+        workspaceList: [...state.workspaceList, action.newWorkspace],
+      };
     case CREATE_WS:
       return [...state];
     case UPDATE_WS:

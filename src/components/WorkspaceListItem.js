@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./WorkspaceListItem.module.scss";
 import { useHistory } from "react-router-dom";
 import { readWorkspace } from "../redux/workspace/action";
-import { createWorkspace } from "../redux/workspace/action";
+import { createWorkspace, deleteWorkspace } from "../redux/workspace/action";
 
 function WorkspaceListItem({ item, depth = 1 }) {
   const dispatch = useDispatch();
@@ -18,11 +18,14 @@ function WorkspaceListItem({ item, depth = 1 }) {
     dispatch(createWorkspace(item.id));
     setShowChildren(true);
   };
-
   const pathId = useSelector((state) => state.router.location.pathname).replace(
     "/workspace/",
     ""
   );
+  const deleteWS = (e) => {
+    e.stopPropagation();
+    dispatch(deleteWorkspace({ id: item.id, currId: pathId }));
+  };
   let history = useHistory(); // withRouter의 재귀 컴포넌트에 적용이 어려운 점을 훅으로 대체
 
   return (
@@ -56,6 +59,7 @@ function WorkspaceListItem({ item, depth = 1 }) {
             </span>
             <span
               className={`material-icons ${styles["material-icons"]}`}
+              onClick={deleteWS}
               // @click.stop="deleteWorkspace"
             >
               delete
