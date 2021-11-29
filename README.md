@@ -108,7 +108,7 @@ import { ConnectedRouter } from "connected-react-router";
 </Provider>;
 ```
 
-### "history": "^5.1.0"
+### "history": "^4.10.1"
 
 > JavaScript가 실행되는 모든 곳에서 세션 히스토리를 쉽게 관리할 수 있다
 
