@@ -1,14 +1,12 @@
 import {
   REQ_START,
   REQ_START_WS,
-  REQ_SUCCESS,
+  MAKE_PATH,
   REQ_FAIL,
   REQ_FAIL_WS,
-  CREATE_WS,
   READ_WS_LIST,
   READ_WS,
   UPDATE_WS,
-  DELETE_WS,
 } from "./types";
 
 const wsInitial = {
@@ -41,6 +39,12 @@ export const workspaceReducer = (state = wsInitial, action) => {
           content,
         },
       };
+    case UPDATE_WS:
+      return {
+        ...state,
+        loading: false,
+        workspace: action.payload,
+      };
     case REQ_FAIL_WS:
       return {
         ...state,
@@ -72,12 +76,6 @@ export const workspaceListReducer = (state = initial, action) => {
         loading: false,
         workspaceList: [...state.workspaceList, action.newWorkspace],
       };
-    case CREATE_WS:
-      return [...state];
-    case UPDATE_WS:
-      return state;
-    case DELETE_WS:
-      return state;
     case REQ_START:
       return {
         ...state,
@@ -95,5 +93,10 @@ export const workspaceListReducer = (state = initial, action) => {
 };
 
 export const pathReducer = (state = [], action) => {
-  return state;
+  switch (action.type) {
+    case MAKE_PATH:
+      return [...action.payload];
+    default:
+      return state;
+  }
 };
