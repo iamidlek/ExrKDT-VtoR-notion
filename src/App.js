@@ -38,7 +38,6 @@ function App() {
         router.location.pathname.replace("/ExrKDT-VtoR-notion/workspace/", "")
       )
     );
-    // path 재계산 및 반영이 필요하다
   }, [router]);
   return (
     <div className={styles["app__inner"]}>

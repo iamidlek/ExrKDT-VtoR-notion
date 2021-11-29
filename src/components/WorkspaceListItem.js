@@ -51,18 +51,22 @@ function WorkspaceListItem({ item, depth = 1 }) {
           </span>
           <span className={styles["text"]}>{item.title || "제목 없음"}</span>
           <div className={styles["actions"]}>
-            <span
-              className={`material-icons ${styles["material-icons"]}`}
-              onClick={addChildWS}
-            >
-              add
-            </span>
-            <span
-              className={`material-icons ${styles["material-icons"]}`}
-              onClick={deleteWS}
-            >
-              delete
-            </span>
+            {depth <= 4 && (
+              <span
+                className={`material-icons ${styles["material-icons"]}`}
+                onClick={addChildWS}
+              >
+                add
+              </span>
+            )}
+            {"wikkdNRxyeD0YJpxQzJ7" !== item.id && (
+              <span
+                className={`material-icons ${styles["material-icons"]}`}
+                onClick={deleteWS}
+              >
+                delete
+              </span>
+            )}
           </div>
         </div>
         {!hasChildren && showChildren && (
