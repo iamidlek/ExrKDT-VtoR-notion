@@ -1,20 +1,29 @@
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
+import { readWorkspace } from "../redux/workspace/action";
 import styles from "./PathHeader.module.scss";
 
 export default function PathHeader() {
+  let history = useHistory();
+  const dispatch = useDispatch();
+
+  const path = useSelector((state) => state.path);
+  const moveWS = (id) => {
+    dispatch(readWorkspace(id));
+    history.push(`/workspace/${id}`);
+  };
   return (
     <header>
       <div className={styles["titles"]}>
-        <template
-        // v-for="({ id, title }, index) in $store.state.workspace.currentWorkspacePath" :key="id"
-        >
-          <div
-            // v-if="index > 0"
-            className={styles["division"]}
-          >
-            /
-          </div>
-          <button className={styles["title"]}>제목 없음</button>
-        </template>
+        {path.map(({ id, title }, index) => (
+          <React.Fragment key={id}>
+            {index ? <div className={styles["division"]}>/</div> : ""}
+            <button className={styles["title"]} onClick={() => moveWS(id)}>
+              {title || "제목 없음"}
+            </button>
+          </React.Fragment>
+        ))}
       </div>
       <div className={styles["actions"]}>
         <button>공유</button>
