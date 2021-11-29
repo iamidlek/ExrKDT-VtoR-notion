@@ -1,21 +1,29 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./WorkspaceListItem.module.scss";
 import { useHistory } from "react-router-dom";
+import { readWorkspace } from "../redux/workspace/action";
+import { createWorkspace } from "../redux/workspace/action";
 
 function WorkspaceListItem({ item, depth = 1 }) {
+  const dispatch = useDispatch();
   const [showChildren, setShowChildren] = useState(false);
   const hasChildren = item.children && item.children.length;
   const handleshowChildren = (e) => {
     e.stopPropagation();
     setShowChildren((curr) => !curr);
   };
+  const addChildWS = (e) => {
+    e.stopPropagation();
+    dispatch(createWorkspace(item.id));
+    setShowChildren(true);
+  };
+
   const pathId = useSelector((state) => state.router.location.pathname).replace(
     "/workspace/",
     ""
   );
-  // withRouter의 재귀 컴포넌트에 적용이 어려운 점을 훅으로 대체
-  let history = useHistory();
+  let history = useHistory(); // withRouter의 재귀 컴포넌트에 적용이 어려운 점을 훅으로 대체
 
   return (
     <div>
@@ -26,6 +34,7 @@ function WorkspaceListItem({ item, depth = 1 }) {
             pathId === item.id && styles["active"]
           }`}
           onClick={() => {
+            dispatch(readWorkspace(item.id));
             history.push(`/workspace/${item.id}`);
           }}
         >
@@ -41,7 +50,7 @@ function WorkspaceListItem({ item, depth = 1 }) {
           <div className={styles["actions"]}>
             <span
               className={`material-icons ${styles["material-icons"]}`}
-              // @click.stop="createWorkspace"
+              onClick={addChildWS}
             >
               add
             </span>
