@@ -22,7 +22,10 @@ function App() {
     dispatch(readWorkspaceList());
   }, []);
   useEffect(() => {
-    if (history.location.pathname === "/" && wslist.workspaceList.length) {
+    if (
+      history.location.pathname === "/ExrKDT-VtoR-notion/" &&
+      wslist.workspaceList.length
+    ) {
       dispatch(readWorkspace(wslist.workspaceList[0].id));
       history.push(`/workspace/${wslist.workspaceList[0].id}`);
     }

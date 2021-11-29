@@ -12,11 +12,9 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Switch>
-        <Route path="/">
+        <Route path="/ExrKDT-VtoR-notion/">
           <App />
         </Route>
-        {/* State에 첫번째 워크스페이스가 잡히면 이동하게 만들 예정 */}
-        {/* <Redirect from="/" to="/workspace" /> */}
         <Route path="*">
           <NotFound />
         </Route>
