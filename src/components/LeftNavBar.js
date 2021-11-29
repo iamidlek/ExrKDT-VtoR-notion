@@ -2,10 +2,17 @@ import styles from "./LeftNavBar.module.scss";
 import { useSelector } from "react-redux";
 import WorkspaceListItem from "./WorkspaceListItem";
 import { useState } from "react";
+import { createWorkspace } from "../redux/workspace/action";
+import { useDispatch } from "react-redux";
 
 export default function LeftNavBar() {
   const workspaces = useSelector((state) => state.workspaceTree.workspaceList);
   const [navWidth, setNavWidth] = useState(240);
+
+  const dispatch = useDispatch();
+  const addNewWS = () => {
+    dispatch(createWorkspace());
+  };
   return (
     <nav style={{ width: `${navWidth}px` }}>
       <div className={styles["header"]}>
@@ -18,7 +25,7 @@ export default function LeftNavBar() {
         ))}
       </ul>
       <div className={styles["actions"]}>
-        <div className={styles["action"]}>
+        <div className={styles["action"]} onClick={addNewWS}>
           <span className={`material-icons ${styles["material-icons"]}`}>
             add
           </span>
