@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/ExrKDT-VtoR-notion/static/css/main.097798cc.chunk.css",
+    "main.js": "/ExrKDT-VtoR-notion/static/js/main.022d83b2.chunk.js",
+    "main.js.map": "/ExrKDT-VtoR-notion/static/js/main.022d83b2.chunk.js.map",
+    "runtime-main.js": "/ExrKDT-VtoR-notion/static/js/runtime-main.13b2a12e.js",
+    "runtime-main.js.map": "/ExrKDT-VtoR-notion/static/js/runtime-main.13b2a12e.js.map",
+    "static/js/2.cfca38a5.chunk.js": "/ExrKDT-VtoR-notion/static/js/2.cfca38a5.chunk.js",
+    "static/js/2.cfca38a5.chunk.js.map": "/ExrKDT-VtoR-notion/static/js/2.cfca38a5.chunk.js.map",
+    "index.html": "/ExrKDT-VtoR-notion/index.html",
+    "static/css/main.097798cc.chunk.css.map": "/ExrKDT-VtoR-notion/static/css/main.097798cc.chunk.css.map",
+    "static/js/2.cfca38a5.chunk.js.LICENSE.txt": "/ExrKDT-VtoR-notion/static/js/2.cfca38a5.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.13b2a12e.js",
+    "static/js/2.cfca38a5.chunk.js",
+    "static/css/main.097798cc.chunk.css",
+    "static/js/main.022d83b2.chunk.js"
+  ]
+}
