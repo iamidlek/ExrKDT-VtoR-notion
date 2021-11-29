@@ -11,7 +11,7 @@ export default function PathHeader() {
   const path = useSelector((state) => state.path);
   const moveWS = (id) => {
     dispatch(readWorkspace(id));
-    history.push(`/workspace/${id}`);
+    history.push(`/ExrKDT-VtoR-notion/workspace/${id}`);
   };
   return (
     <header>

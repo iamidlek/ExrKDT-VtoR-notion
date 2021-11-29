@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { Provider } from "react-redux";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import store, { history } from "./redux/store";
 import NotFound from "./pages/NotFound";

@@ -52,7 +52,7 @@ export const createWorkspace = (parentId) => async (dispatch) => {
       dispatch(readWorkspaceList());
     }
     dispatch(readWorkspace(newWorkspace.id));
-    history.push(`/workspace/${newWorkspace.id}`);
+    history.push(`/ExrKDT-VtoR-notion/workspace/${newWorkspace.id}`);
   } catch (error) {
     dispatch({ type: REQ_FAIL, payload: error });
   }
@@ -83,7 +83,7 @@ export const deleteWorkspace = (payload) => async (dispatch, getState) => {
   dispatch(readWorkspaceList());
   if (payload.id === payload.currId) {
     const { id } = getState().workspaceTree.workspaceList[0];
-    history.push(`/workspace/${id}`);
+    history.push(`/ExrKDT-VtoR-notion/workspace/${id}`);
     dispatch(readWorkspace(id));
   }
 };

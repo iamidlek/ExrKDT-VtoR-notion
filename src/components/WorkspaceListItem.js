@@ -19,7 +19,7 @@ function WorkspaceListItem({ item, depth = 1 }) {
     setShowChildren(true);
   };
   const pathId = useSelector((state) => state.router.location.pathname).replace(
-    "/workspace/",
+    "/ExrKDT-VtoR-notion/workspace/",
     ""
   );
   const deleteWS = (e) => {
@@ -38,7 +38,7 @@ function WorkspaceListItem({ item, depth = 1 }) {
           }`}
           onClick={() => {
             dispatch(readWorkspace(item.id));
-            history.push(`/workspace/${item.id}`);
+            history.push(`/ExrKDT-VtoR-notion/workspace/${item.id}`);
           }}
         >
           <span
@@ -60,7 +60,6 @@ function WorkspaceListItem({ item, depth = 1 }) {
             <span
               className={`material-icons ${styles["material-icons"]}`}
               onClick={deleteWS}
-              // @click.stop="deleteWorkspace"
             >
               delete
             </span>

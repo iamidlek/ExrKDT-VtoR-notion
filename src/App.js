@@ -27,11 +27,17 @@ function App() {
       wslist.workspaceList.length
     ) {
       dispatch(readWorkspace(wslist.workspaceList[0].id));
-      history.push(`/workspace/${wslist.workspaceList[0].id}`);
+      history.push(
+        `/ExrKDT-VtoR-notion/workspace/${wslist.workspaceList[0].id}`
+      );
     }
   }, [wslist]);
   useEffect(() => {
-    dispatch(headerPath(router.location.pathname.replace("/workspace/", "")));
+    dispatch(
+      headerPath(
+        router.location.pathname.replace("/ExrKDT-VtoR-notion/workspace/", "")
+      )
+    );
     // path 재계산 및 반영이 필요하다
   }, [router]);
   return (
@@ -41,7 +47,10 @@ function App() {
         <PathHeader />
         <div className={styles["page__container"]}>
           <Switch>
-            <Route path="/workspace/:id" component={Workspace} />
+            <Route
+              path="/ExrKDT-VtoR-notion/workspace/:id"
+              component={Workspace}
+            />
             <Route path="*" component={NotFound} />
           </Switch>
         </div>
