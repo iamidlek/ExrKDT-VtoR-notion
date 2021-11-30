@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/ExrKDT-VtoR-notion/static/css/main.097798cc.chunk.css",
-    "main.js": "/ExrKDT-VtoR-notion/static/js/main.a5f20033.chunk.js",
-    "main.js.map": "/ExrKDT-VtoR-notion/static/js/main.a5f20033.chunk.js.map",
-    "runtime-main.js": "/ExrKDT-VtoR-notion/static/js/runtime-main.13b2a12e.js",
-    "runtime-main.js.map": "/ExrKDT-VtoR-notion/static/js/runtime-main.13b2a12e.js.map",
-    "static/js/2.cfca38a5.chunk.js": "/ExrKDT-VtoR-notion/static/js/2.cfca38a5.chunk.js",
-    "static/js/2.cfca38a5.chunk.js.map": "/ExrKDT-VtoR-notion/static/js/2.cfca38a5.chunk.js.map",
+    "main.js": "/ExrKDT-VtoR-notion/static/js/main.485d199b.chunk.js",
+    "main.js.map": "/ExrKDT-VtoR-notion/static/js/main.485d199b.chunk.js.map",
+    "runtime-main.js": "/ExrKDT-VtoR-notion/static/js/runtime-main.ceed7c96.js",
+    "runtime-main.js.map": "/ExrKDT-VtoR-notion/static/js/runtime-main.ceed7c96.js.map",
+    "static/js/2.c8ac2c17.chunk.js": "/ExrKDT-VtoR-notion/static/js/2.c8ac2c17.chunk.js",
+    "static/js/2.c8ac2c17.chunk.js.map": "/ExrKDT-VtoR-notion/static/js/2.c8ac2c17.chunk.js.map",
     "index.html": "/ExrKDT-VtoR-notion/index.html",
     "static/css/main.097798cc.chunk.css.map": "/ExrKDT-VtoR-notion/static/css/main.097798cc.chunk.css.map",
-    "static/js/2.cfca38a5.chunk.js.LICENSE.txt": "/ExrKDT-VtoR-notion/static/js/2.cfca38a5.chunk.js.LICENSE.txt"
+    "static/js/2.c8ac2c17.chunk.js.LICENSE.txt": "/ExrKDT-VtoR-notion/static/js/2.c8ac2c17.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.13b2a12e.js",
-    "static/js/2.cfca38a5.chunk.js",
+    "static/js/runtime-main.ceed7c96.js",
+    "static/js/2.c8ac2c17.chunk.js",
     "static/css/main.097798cc.chunk.css",
-    "static/js/main.a5f20033.chunk.js"
+    "static/js/main.485d199b.chunk.js"
   ]
 }
