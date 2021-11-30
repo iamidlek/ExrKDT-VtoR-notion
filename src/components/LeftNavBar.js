@@ -1,20 +1,39 @@
 import styles from "./LeftNavBar.module.scss";
 import { useSelector } from "react-redux";
 import WorkspaceListItem from "./WorkspaceListItem";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createWorkspace } from "../redux/workspace/action";
 import { useDispatch } from "react-redux";
+import interact from "interactjs";
 
 export default function LeftNavBar() {
   const workspaces = useSelector((state) => state.workspaceTree.workspaceList);
   const [navWidth, setNavWidth] = useState(240);
+  const nav = useRef(null);
+  const resizeHandle = useRef(null);
 
   const dispatch = useDispatch();
   const addNewWS = () => {
     dispatch(createWorkspace());
   };
+
+  const navInit = (nav, handle) => {
+    interact(nav)
+      .resizable({
+        edges: {
+          right: handle,
+        },
+      })
+      .on("resizemove", (event) => {
+        setNavWidth(event.rect.width);
+      });
+  };
+
+  useEffect(() => {
+    navInit(nav.current, resizeHandle.current);
+  });
   return (
-    <nav style={{ width: `${navWidth}px` }}>
+    <nav style={{ width: `${navWidth}px` }} ref={nav}>
       <div className={styles["header"]}>
         <div className={styles["user-profile"]}></div>
         Yhole's Notion
@@ -33,8 +52,9 @@ export default function LeftNavBar() {
         </div>
       </div>
       <div
+        ref={resizeHandle}
         className={styles["resize-handle"]}
-        text="너비 자동 조절 라이브러리 사용할것"
+        onDoubleClick={() => setNavWidth(240)}
       ></div>
     </nav>
   );
